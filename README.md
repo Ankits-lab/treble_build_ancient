@@ -5,7 +5,7 @@ To get started with building LineageOS GSI, you'll need to get familiar with [Gi
 
 First, open a new Terminal window, which defaults to your home directory.  Clone the modified treble_experimentations repo there:
 
-    git clone https://github.com/AndyCGYan/treble_experimentations
+    git clone https://github.com/Ankits-lab/treble_build_ancient.git
 
 Create a new working directory for your LineageOS build and navigate to it:
 
@@ -13,12 +13,12 @@ Create a new working directory for your LineageOS build and navigate to it:
 
 Initialize your LineageOS workspace:
 
-    repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
+    repo init -u https://github.com/ancient-lab.git -b eleven
 
 Clone the modified treble patches and this repo:
 
-    git clone https://github.com/AndyCGYan/treble_patches -b lineage-18.1
-    git clone https://github.com/AndyCGYan/treble_build_los -b lineage-18.1
+    git clone https://github.com/Ankits-lab/treble_patches -b lineage-18.1
+    git clone https://github.com/Ankits-lab/treble_build_los -b lineage-18.1
 
 Finally, start the build script:
 

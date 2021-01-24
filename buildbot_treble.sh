@@ -8,7 +8,7 @@ sleep 5
 
 START=`date +%s`
 BUILD_DATE="$(date +%Y%m%d)"
-BL=$PWD/treble_build_los
+BL=$PWD/treble_build_ancient
 
 echo "Preparing local manifest"
 mkdir -p .repo/local_manifests
@@ -40,7 +40,7 @@ echo "Applying PHH patches"
 rm -f device/*/sepolicy/common/private/genfs_contexts
 cd device/phh/treble
 git clean -fdx
-bash generate.sh lineage
+bash generate.sh ancient
 cd ../../..
 bash ~/treble_experimentations/apply-patches.sh treble_patches
 echo ""
@@ -51,14 +51,14 @@ git am $BL/patches/0001-UI-Revive-navbar-layout-tuning-via-sysui_nav_bar-tun.pat
 git am $BL/patches/0001-UI-Disable-wallpaper-zoom.patch
 git am $BL/patches/0001-Disable-vendor-mismatch-warning.patch
 cd ../..
-cd lineage-sdk
+cd ancient-sdk
 git am $BL/patches/0001-sdk-Invert-per-app-stretch-to-fullscreen.patch
 cd ..
-cd packages/apps/LineageParts
-git am $BL/patches/0001-LineageParts-Invert-per-app-stretch-to-fullscreen.patch
+cd packages/apps/ancientParts
+git am $BL/patches/0001-ancientParts-Invert-per-app-stretch-to-fullscreen.patch
 cd ../../..
-cd vendor/lineage
-git am $BL/patches/0001-vendor_lineage-Log-privapp-permissions-whitelist-vio.patch
+cd vendor/ancient
+git am $BL/patches/0001-vendor_ancient-Log-privapp-permissions-whitelist-vio.patch
 cd ../..
 echo ""
 
@@ -70,9 +70,9 @@ cd build/make
 git am $BL/patches/0001-build-Don-t-handle-apns-conf.patch
 cd ../..
 cd device/phh/treble
-git revert 82b15278bad816632dcaeaed623b569978e9840d --no-edit # Update lineage.mk for LineageOS 16.0
+git revert 82b15278bad816632dcaeaed623b569978e9840d --no-edit # Update ancient.mk for ancientOS 16.0
 git am $BL/patches/0001-Remove-fsck-SELinux-labels.patch
-git am $BL/patches/0001-treble-Add-overlay-lineage.patch
+git am $BL/patches/0001-treble-Add-overlay-ancient.patch
 git am $BL/patches/0001-treble-Don-t-specify-config_wallpaperCropperPackage.patch
 cd ../../..
 cd frameworks/av
@@ -96,7 +96,7 @@ cd ../../..
 cd system/sepolicy
 git am $BL/patches/0001-Revert-sepolicy-Relabel-wifi.-properties-as-wifi_pro.patch
 cd ../..
-cd vendor/lineage
+cd vendor/ancient
 git am $BL/patches/0001-build_soong-Disable-generated_kernel_headers.patch
 cd ../..
 echo ""
@@ -114,13 +114,13 @@ buildVariant() {
     make installclean
     make -j$(nproc --all) systemimage
     make vndk-test-sepolicy
-    mv $OUT/system.img ~/build-output/lineage-18.1-$BUILD_DATE-UNOFFICIAL-${1}.img
+    mv $OUT/system.img ~/build-output/ancient-18.1-$BUILD_DATE-UNOFFICIAL-${1}.img
 }
 
 buildVariant treble_arm_bvS
 buildVariant treble_a64_bvS
 buildVariant treble_arm64_bvS
-ls ~/build-output | grep 'lineage'
+ls ~/build-output | grep 'ancient'
 
 END=`date +%s`
 ELAPSEDM=$(($(($END-$START))/60))

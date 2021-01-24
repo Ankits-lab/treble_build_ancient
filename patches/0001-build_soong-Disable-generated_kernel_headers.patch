@@ -15,7 +15,7 @@ index 5076e684..2279bf44 100644
 --- a/build/soong/Android.bp
 +++ b/build/soong/Android.bp
 @@ -20,9 +20,6 @@ bootstrap_go_package {
- lineage_generator {
+ ancient_generator {
      name: "generated_kernel_includes",
  
 -    // The headers make command
@@ -24,7 +24,7 @@ index 5076e684..2279bf44 100644
      // Directories that can be imported by a cc_* module generated_headers property
      export_include_dirs: [
          "usr/audio/include/uapi",
-@@ -30,15 +27,6 @@ lineage_generator {
+@@ -30,15 +27,6 @@ ancient_generator {
          "usr/include/audio/include/uapi",
          "usr/techpack/audio/include",
      ],

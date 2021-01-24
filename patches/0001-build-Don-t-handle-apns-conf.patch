@@ -3,7 +3,7 @@ From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Mon, 5 Oct 2020 01:51:46 +0000
 Subject: [PATCH] build: Don't handle apns-conf
 
-Leave it to vendor/lineage instead
+Leave it to vendor/ancient instead
 
 Change-Id: I51fb1436ee0ee2e33b20ca0810b69e827f3f34dc
 ---
@@ -22,7 +22,7 @@ index 4cdb28b30..dd38847f1 100644
  
 -# Telephony:
 -#   Provide a APN configuration to GSI product
--ifeq ($(LINEAGE_BUILD),)
+-ifeq ($(ancient_BUILD),)
 -PRODUCT_COPY_FILES += \
 -    device/sample/etc/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
 -endif
@@ -38,7 +38,7 @@ index e3442147a..0aa9e7700 100644
  PRODUCT_COPY_FILES := \
      frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
  
--ifeq ($(LINEAGE_BUILD),)
+-ifeq ($(ancient_BUILD),)
 -PRODUCT_COPY_FILES += \
 -    device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
 -endif
@@ -54,7 +54,7 @@ index 418b1eedd..9754cc8e2 100644
      PhotoTable \
      WallpaperPicker \
 -
--ifeq ($(LINEAGE_BUILD),)
+-ifeq ($(ancient_BUILD),)
 -PRODUCT_COPY_FILES += device/sample/etc/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
 -endif
 -- 
